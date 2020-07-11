@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { reduxContext, reducer, initStore } from "@/store.js";
+import { reduxContext, reducer, initStore } from "@/store";
 
 function Provider({ children }) {
   const [store, dispatch] = useReducer(reducer, initStore);

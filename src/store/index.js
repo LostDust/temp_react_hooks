@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import Provider from "@/store/Provider";
 
 const reduxContext = createContext();
 
-const initStore = { token: "hello" };
+const initStore = { token: "token" };
 
 function reducer(state, action) {
   const newState = Object.assign({}, state);
@@ -15,4 +16,4 @@ function reducer(state, action) {
   }
 }
 
-export { reduxContext, reducer, initStore };
+export { reduxContext, reducer, initStore, Provider };

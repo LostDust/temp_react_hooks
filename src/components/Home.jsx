@@ -1,28 +1,12 @@
-import React, { useContext } from "react";
-import { reduxContext } from "@/store.js";
+import React from "react";
 
 function Home() {
-  const { token, dispatch } = useContext(reduxContext);
-  function changeValue(e, key) {
-    const action = {
-      type: "UPDATE",
-      value: key,
-      [key]: e.target.value
-    };
-    dispatch(action);
-  }
-
   return (
-    <div>
+    <section>
       <br />
-      <input
-        type="text"
-        value={token}
-        onChange={e => changeValue(e, "token")}
-        placeholder="password"
-      />
-      <p>{token}</p>
-    </div>
+      <span>BaseURL: </span>
+      <input type="text" value={HOST} readOnly placeholder="BaseURL" />
+    </section>
   );
 }
 
