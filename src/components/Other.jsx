@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { NavLink, withRouter } from "react-router-dom";
 import { reduxContext } from "@/store";
 import { RouteView } from "@/router";
 
 function Other(props) {
+  const { match, location } = props;
   const { token, dispatch } = useContext(reduxContext);
   const [info, setInfo] = useState("info");
-  const { match, location } = props;
 
   function changeValue(e, key) {
     const action = {
@@ -32,9 +32,15 @@ function Other(props) {
       <input type="text" value={info} onChange={e => setInfo(e.target.value)} />
       <br />
       <br />
-      <Link to="/other/child">child</Link>
-      <span> || </span>
-      <Link to="/other/null">null</Link>
+      <nav className="nav-tabs">
+        <NavLink to="/other/child" className="nav-link">
+          child
+        </NavLink>
+        <NavLink to="/other/null" className="nav-link">
+          null
+        </NavLink>
+      </nav>
+
       <RouteView {...{ match, location }} />
     </section>
   );

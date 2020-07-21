@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { reduxContext } from "@/store";
-import rootRoutes from "@/router/routerConfig";
+import rootRoutes from "@/router/config";
 
 function RouteView(props) {
   // 获取当前路由对应路径
@@ -9,18 +9,20 @@ function RouteView(props) {
   const url = match.path === "/" ? "" : `${match.path}/`;
   // 获取 rootRoutes(childrenRoutes)
   const location = "location" in props ? props.location : { state: null };
-  const routes = location.state ? location.state._routes : rootRoutes;
+  const routes = location.state ? location.state.$routes : rootRoutes;
   // 获取全局状态
   const { token } = useContext(reduxContext);
   // 路由守卫
   function routeRender(props, item) {
+    console.log(props.match.url);
+
     // 重定向
     if (item.redirect) return <Redirect to={item.redirect} />;
     // 鉴权
     if (item.auth && token !== "token") return <Redirect to="/other" />;
     // 将 childrenRoutes 存储到 location
     if (item.children)
-      props.location.state = { ...props.location.state, _routes: item.children };
+      props.location.state = { ...props.location.state, $routes: item.children };
 
     return <item.component {...props} />;
   }

@@ -1,26 +1,27 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "commonjs": true,
     "es6": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
+    "ecmaFeatures": { "jsx": true },
     "sourceType": "module",
     "ecmaVersion": 2018
   },
-  "plugins": ["react"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "plugins": ["react", "react-hooks"],
+  "globals": {
+    "HOST": "readonly"
+  },
   "rules": {
     "no-unused-vars": "off",
-    "no-undef": "off",
     "react/prop-types": "off"
   }
 }
