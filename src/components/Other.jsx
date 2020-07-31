@@ -1,21 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { reduxContext } from "@/store";
-import { RouteView } from "@/router";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useModel } from "#/provider";
+import { useTake, getTake } from "#/manager";
+import { RouteView } from "#/router";
 
-function Other(props) {
-  const { match, location } = props;
-  const { token, dispatch } = useContext(reduxContext);
-  const [info, setInfo] = useState("info");
-
-  function changeValue(e, key) {
-    const action = {
-      type: "UPDATE",
-      value: key,
-      [key]: e.target.value,
-    };
-    dispatch(action);
-  }
+function Other() {
+  const [{ info }, { setState }] = useTake("master");
 
   return (
     <section>
@@ -23,13 +13,12 @@ function Other(props) {
       <span>Auth: </span>
       <input
         type="text"
-        value={token}
-        onChange={e => changeValue(e, "token")}
+        value={info}
+        onChange={e => setState({ info: e.target.value })}
         placeholder="token"
       />
-      <span>{token}</span>
       <br />
-      <input type="text" value={info} onChange={e => setInfo(e.target.value)} />
+      <span>{info}</span>
       <br />
       <br />
       <nav className="nav-tabs">
@@ -40,10 +29,9 @@ function Other(props) {
           null
         </NavLink>
       </nav>
-
-      <RouteView {...{ match, location }} />
+      <RouteView />
     </section>
   );
 }
 
-export default withRouter(Other);
+export default Other;

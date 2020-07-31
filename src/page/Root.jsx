@@ -1,9 +1,8 @@
 import React from "react";
-import { HashRouter as Router, NavLink } from "react-router-dom";
 // import { BrowserRouter as Router, NavLink } from "react-router-dom";
-
-import { RouteView } from "@/router";
-import { Provider } from "@/store";
+import { HashRouter as Router, NavLink } from "react-router-dom";
+import { RouteView } from "#/router";
+import { Provider } from "#/provider";
 
 function Root() {
   return (

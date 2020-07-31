@@ -182,8 +182,3 @@ th {
 [hidden] {
   display: none !important;
 }
-.pure-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}

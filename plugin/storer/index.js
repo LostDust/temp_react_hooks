@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import Provider from "@/store/Provider";
+import { createContext, useContext } from "react";
+import Provider from "./Provider";
 
 const reduxContext = createContext();
 
@@ -15,5 +15,6 @@ function reducer(state, action) {
       return state;
   }
 }
+const useStore = () => useContext(reduxContext);
 
-export { reduxContext, reducer, initStore, Provider };
+export { reduxContext, reducer, initStore, Provider, useStore };
