@@ -1,4 +1,4 @@
-# 一个自用的 React 脚手架（hooks 版）
+# 一个自用的 React 脚手架（js + hooks 版）
 
 [toc]
 
@@ -9,8 +9,8 @@
 - assets
 - plugin
 - src
-  + style
-  + page
+  - style
+  - page
 
 ## 内置插件
 
