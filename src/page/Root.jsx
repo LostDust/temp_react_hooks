@@ -7,9 +7,9 @@ import { Provider } from "#/provider";
 function Root() {
   return (
     <Provider>
-      <br />
-      <br />
       <main style={{ marginLeft: "30%" }}>
+        <br />
+        <br />
         <Router>
           <nav className="nav-tabs">
             <NavLink to="/home" className="nav-link">
