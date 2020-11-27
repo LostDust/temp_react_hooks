@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { getLocation, getMatch } from "./getRouterContext";
-import rootRoutes from "./config";
 // 如何指定自定义配置文件？
-// import rootRoutes from "@/config/router.config.js";
+// import rootRoutes from "./config"; // 默认配置文件
+import rootRoutes from "@/config/router.config.js";
 import routeRenderer from "./routeRenderer";
 
 function RouteView() {

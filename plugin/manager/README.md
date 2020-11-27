@@ -4,11 +4,12 @@
 - 依赖：
   + useEffect
   + useRef
-  +  useState
+  + useState
 
 ## 开始
 
-- 在 `#/manager/models.js` 中配置状态模型；
+- 在 `#/manager/models.js` 或 `@/config/manager.models.js` 中配置状态模型；
+- 后者为默认配置文件路径，可以在 `#/manager/index.js` 中修改；
 
 ```javascript
 stateModel = {
@@ -28,10 +29,17 @@ stateModel = {
  * modelState: any
  * dispatcher: { ...mutations, ...effects }
  */
+// 获取数据
 const [<modelState>, <dispatcher>] = useTake(<modelName>);
-const [{ token }, { fetchInfo }] = useTake("auth");
+// 例：
+const [{ token }, { setState }] = useTake("auth");
+
 const <modelState> = getTake(<modelName>);
+// 例：
 const { token } = getTake("auth");
+
+// 更新数据
+setState({ token: "newToken" })
 ```
 
 ## 注意

@@ -5,7 +5,8 @@
 
 ## 开始
 
-- 在 `src/config/router.config.js` 集中配置路由规则；
+- 在 `@/config/router.config.js` 或 `#/router/config.js` 集中配置路由规则；
+- 前者为默认配置文件路径，可以在 `#/router/routeView.jsx` 中修改；
 - 在项目中导入：`import { RouteView } from "#/router"`；
 - 直接用 RouteView  组件代替若干 Route 组件；
 - 使用以下 API 能够访问路由的 Context，而不会订阅更新。若希望订阅更新请使用官方的 HooksAPI；
