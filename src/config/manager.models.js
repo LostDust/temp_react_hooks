@@ -13,12 +13,19 @@ function setState(modelState, payload) {
  * 负责异步操作或模型联动
  */
 async function fetchInfo(rootState, action) {
+  /** action: { payload, dispatcher, storeList, storeList, update } */
   // 异步操作
   await delay(2000);
-  // 调用 mutation（必须是 dispatcher 中经过封装的方法）
-  action.dispatcher.setState({ info: "hehe" });
-  // 手动触发页面更新
-  // action.next();
+  // 参数获取
+  action.payload;
+  // 调用当前 store 的 mutation，_unupdate 表示不触发更新
+  action.dispatcher.setState({ info: "hehe", _unupdate: true });
+  // 访问其他 store 的 mutation
+  action.storeList.master._dispatcher;
+  // 触发当前 store 的订阅者更新
+  action.update();
+  // 触发其他 store 的订阅者更新
+  // action.storeList.master._update();
 }
 
 /**

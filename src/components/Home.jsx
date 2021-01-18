@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useTake, getTake } from "#/manager";
 
 function Home() {
   const [val, setVal] = useState(0);
+  const [{ token }] = useTake("auth");
 
   return (
     <section id="home">
       <br />
       <span>BaseURL: </span>
       <input type="text" value={HOST} readOnly placeholder="BaseURL" />
+      <br />
+      <p>info: {token}</p>
       <br />
       <br />
       <input

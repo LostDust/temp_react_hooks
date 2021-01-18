@@ -4,24 +4,23 @@
 - 依赖：
   + useEffect
   + useRef
-  + useState
+  +  useState
 
 ## 开始
 
-- 在 `#/manager/models.js` 或 `@/config/manager.models.js` 中配置状态模型；
-- 后者为默认配置文件路径，可以在 `#/manager/index.js` 中修改；
+- 在 `#/manager/models.js` 或 `@/config/manager/models.js` 中配置状态模型；
 
 ```javascript
 stateModel = {
   state: { [string]: any },
-  mutations: { [string]: (modelState, payload) => newModelState } // 形如 reducer，负责对局部状态的处理
+  mutations: { [string]: (modelState, payload) => newModelState } // 形如 reducer，负责对当前 store 的处理
   effects: { [string]: (rootState, action) => any } // 负责异步操作或模型联动
 }
 ```
 
-- 将状态模型对象传入 createManager() 创建全局 storelist；
+- 将状态模型对象传入 createManager() 创建全局 storeList；（默认已完成）
 - 在页面中引入 API：`import { useTake, getTake } from "#/manager"`；
-- useTake 用于在组件中获取状态与操作方法，getTake 则只用于获取状态，并且不会订阅状态的更新；
+- `useTake` 用于在组件中获取状态与操作方法，`getTake` 则只用于获取状态，并且不会订阅状态的更新；
 
 ```javascript
 /**
@@ -29,23 +28,23 @@ stateModel = {
  * modelState: any
  * dispatcher: { ...mutations, ...effects }
  */
-// 获取数据
-const [<modelState>, <dispatcher>] = useTake(<modelName>);
-// 例：
-const [{ token }, { setState }] = useTake("auth");
+// 例子：
+// 引入 API
+import { useTake, getTake } from "#/manager";
 
-const <modelState> = getTake(<modelName>);
-// 例：
+// 获取 state 和 dispatcher
+const [<modelState>, <dispatcher>] = useTake(<modelName>);
+const [{ token }, { setState }] = useTake("auth");
 const { token } = getTake("auth");
 
-// 更新数据
+// 更新状态
 setState({ token: "newToken" })
 ```
 
 ## 注意
 
 - mutation 只会对当前模型的状态进行操作；
-- 同模型下的 mutation 与 effect 应避免同名；
-- useTake 与 getTake 方法的缺省参数为 `"master"`；
+- 同模型下的 mutation 与 effect 应避免同名，否则 effect 会覆盖同名 mutation；
+- `useTake` 与 `getTake` 方法的缺省参数为 `"master"`；
 - 任意模型的更新不会触发其他模型的更新，因此性能会比 provider 插件更好；
 - 该插件采用订阅者模式，因此不需要 `<Provider>` 绑定语境；
